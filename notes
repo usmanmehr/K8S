@@ -1,0 +1,38 @@
+https://kubernetes.io/docs/reference/kubectl/#syntax
+
+kubectl get all
+
+kubectl describe pod <PD NAME>
+kubectl describe pod webapp
+
+
+kubectl exec <POD NAME> ls
+
+kubectl -it exec webapp sh
+Shell into Pod
+-it (interactive)
+
+
+kubectl apply -f webapp_service.yaml
+kubectl apply -f <POD>
+kubectl apply -f .
+
+kubectl describe service fleetman-webapp
+
+kubectl get pods
+kubectl get pods --show-labels
+
+kubectl get pods --show-labels
+
+kubectl get all
+kubectl describe svc fleetman-webapp
+
+
+kubectl delete pod webapp-release-0-5
+
+ReplicaSet
+
+Delete PODs
+kubectl delete pods  --all
+
+kubectl describe replicaset webapp
