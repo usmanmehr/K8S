@@ -1,5 +1,5 @@
 apiVersion: apps/v1
-kind: ReplicaSet
+kind: Deployment
 metadata:
   name: webapp
 spec:
@@ -28,5 +28,3 @@ spec:
   containers:
   - name: k8s-fleetman-queue
     image: richardchesterwood/k8s-fleetman-queue:release1
-
-This is a GIT TEST
