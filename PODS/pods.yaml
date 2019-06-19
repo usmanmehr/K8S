@@ -28,3 +28,5 @@ spec:
   containers:
   - name: k8s-fleetman-queue
     image: richardchesterwood/k8s-fleetman-queue:release1
+
+This is a GIT TEST
