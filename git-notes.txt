@@ -1,0 +1,11 @@
+…or create a new repository on the command line
+echo "# K8S" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git remote add origin https://github.com/usmanmehr/K8S.git
+git push -u origin master
+
+…or push an existing repository from the command line
+git remote add origin https://github.com/usmanmehr/K8S.git
+git push -u origin master
