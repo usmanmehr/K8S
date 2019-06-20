@@ -1,0 +1,91 @@
+kind: Service
+apiVersion: v1
+metadata:
+  # Unique key of the Service instance
+  name: fleetman-webapp
+spec:
+  ports:
+    # Accept traffic sent to port 80
+    - name: http
+      port: 80
+      nodePort: 30080
+    # targetPort: 80
+  selector:
+    # Loadbalance traffic across Pods matching
+    # this label selector
+    app: webapp
+
+  # Create an HA proxy in the cloud provider
+  # with an External IP address - *Only supported
+  # by some cloud providers*
+  type: NodePort
+
+---
+kind: Service
+apiVersion: v1
+metadata:
+  # Unique key of the Service instance
+  name: fleetman-queue
+spec:
+  ports:
+    # Accept traffic sent to port 80
+    - name: http
+      port: 8161
+      nodePort: 30010
+    #  targetPort: 8161
+    - name: endpoint
+      port: 61616
+  selector:
+    # Loadbalance traffic across Pods matching
+    # this label selector
+    app: queue
+  #  release: "1"
+  # Create an HA proxy in the cloud provider
+  # with an External IP address - *Only supported
+  # by some cloud providers*
+  type: NodePort
+
+---
+kind: Service
+apiVersion: v1
+metadata:
+  # Unique key of the Service instance
+  name: fleetman-position-tracker
+spec:
+  ports:
+    # Accept traffic sent to port 80
+    - name: http
+      port: 8080
+    #  targetPort: 8161
+  selector:
+    # Loadbalance traffic across Pods matching
+    # this label selector
+    app: position-tracker
+  #  release: "1"
+  # Create an HA proxy in the cloud provider
+  # with an External IP address - *Only supported
+  # by some cloud providers*
+  type: ClusterIP
+
+---
+kind: Service
+apiVersion: v1
+metadata:
+  # Unique key of the Service instance
+  name: fleetman-api-gateway
+spec:
+  ports:
+    # Accept traffic sent to port 80
+    - name: http
+      port: 8080
+    #  nodePort: 30020
+    #  targetPort: 8161
+  selector:
+    # Loadbalance traffic across Pods matching
+    # this label selector
+    app: api-gateway
+  #  release: "1"
+  # Create an HA proxy in the cloud provider
+  # with an External IP address - *Only supported
+  # by some cloud providers*
+  type: ClusterIP

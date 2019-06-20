@@ -1,31 +1,35 @@
+
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: queue
 spec:
+  #minReadySeconds: 30
   selector:
     matchLabels:
       app: queue
   replicas: 1
-  template:
+  template: #template for the Pods
     metadata:
       labels:
         app: queue
     spec:
       containers:
-      - name: webapp
+      - name: queue
         image: richardchesterwood/k8s-fleetman-queue:release1
+
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: position-simulator
 spec:
+  #minReadySeconds: 30
   selector:
     matchLabels:
       app: position-simulator
   replicas: 1
-  template:
+  template: #template for the Pods
     metadata:
       labels:
         app: position-simulator
@@ -43,11 +47,12 @@ kind: Deployment
 metadata:
   name: position-tracker
 spec:
+  #minReadySeconds: 30
   selector:
     matchLabels:
       app: position-tracker
   replicas: 1
-  template:
+  template: #template for the Pods
     metadata:
       labels:
         app: position-tracker
@@ -63,20 +68,21 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: webapp
+  name: api-gateway
 spec:
+  #minReadySeconds: 30
   selector:
     matchLabels:
-      app: webapp
+      app: api-gateway
   replicas: 1
-  template:
+  template: #template for the Pods
     metadata:
       labels:
-        app: webapp
+        app: api-gateway
     spec:
       containers:
-      - name: webapp
-        image: richardchesterwood/k8s-fleetman-webapp-angular:release1
+      - name: api-gateway
+        image: richardchesterwood/k8s-fleetman-api-gateway:release1
         env:
         - name: SPRING_PROFILES_ACTIVE
           value: production-microservice
@@ -85,20 +91,21 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: fleetman-api-gateway
+  name: webapp
 spec:
+  #minReadySeconds: 30
   selector:
     matchLabels:
-      app: api-gateway
+      app: webapp
   replicas: 1
-  template:
+  template: #template for the Pods
     metadata:
       labels:
-        app: api-gateway
+        app: webapp
     spec:
       containers:
-      - name: api-gateway
-        image: richardchesterwood/k8s-fleetman-api-gateway:release1
+      - name: webapp
+        image: richardchesterwood/k8s-fleetman-webapp-angular:release1
         env:
         - name: SPRING_PROFILES_ACTIVE
           value: production-microservice
