@@ -36,3 +36,30 @@ Delete PODs
 kubectl delete pods  --all
 
 kubectl describe replicaset webapp
+
+Delete ReplicaSet
+kubectl delete rs <RS NAME>
+
+
+kubectl rollout status deploy webapp
+
+kubectl rollout status deploy webapp
+
+
+Usman:PODS umehr$ kubectl rollout history deploy webapp
+deployment.extensions/webapp
+REVISION  CHANGE-CAUSE
+5         <none>
+6         <none>
+
+Usman:PODS umehr$ kubectl rollout undo deploy webapp --to-revision=5
+deployment.extensions/webapp rolled back
+
+
+
+kubectl describe pod webapp-669ddb74b6-g24sg
+
+kubectl get namespaces
+kubectl get ns
+
+kubectl get po -n kube-system - Display PODS in namespace kube-system
