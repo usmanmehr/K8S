@@ -26,21 +26,36 @@ kind: Service
 apiVersion: v1
 metadata:
   # Unique key of the Service instance
-  name: k8s-fleetman-queue
+  name: fleetman-position-tracker
 spec:
   selector:
     # This define which PODs are going to be represented by this Service
     #
-    queue: k8s-fleetman-queue
-    release: "1"
+    app: position-tracker
+
     # Accept traffic sent to port 80
   ports:
     - name: http
-      port: 8161
-      targetPort: 8161
-      nodePort: 30010
-  #      targetPort: 80
-  # Create an HA proxy in the cloud provider
-  # with an External IP address - *Only supported
-  # by some cloud providers*
-  type: NodePort
+      port: 8080
+
+  type: ClusterIP
+
+---
+
+kind: Service
+apiVersion: v1
+metadata:
+  # Unique key of the Service instance
+  name: fleetman-api-gateway
+spec:
+  selector:
+    # This define which PODs are going to be represented by this Service
+    #
+    app: api-gateway
+
+    # Accept traffic sent to port 80
+  ports:
+    - name: http
+      port: 8080
+
+  type: ClusterIP

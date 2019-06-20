@@ -1,3 +1,8 @@
+minikube start --memory 4096
+
+minikube docker-env
+eval $(minikube docker-env)
+
 https://kubernetes.io/docs/reference/kubectl/#syntax
 
 kubectl get all
@@ -63,3 +68,13 @@ kubectl get namespaces
 kubectl get ns
 
 kubectl get po -n kube-system - Display PODS in namespace kube-system
+
+
+kubectl exec -it webapp-564995b856-jwtc9 sh
+
+kubectl delete -f .
+
+
+kubectl logs  position-simulator-7995476794-5wddn
+
+kubectl delete all --all
